@@ -8,8 +8,8 @@
   color: var(--black);
   background-color: var(--white);
   min-width: 1300px;
-  min-height: 580px;
-  max-width: 1200px;
+  min-height: 480px;
+  max-width: 900px;
 
   display: flex;
   overflow: hidden;
@@ -60,7 +60,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 600px) {
   .container {
     min-height: unset;
     min-width: unset;
