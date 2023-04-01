@@ -628,7 +628,7 @@ export function Home() {
         className={styles.sidebar + ` ${showSideBar && styles["sidebar-show"]}`}
       >
         <div className={styles["sidebar-header"]}>
-          <div className={styles["sidebar-title"]}>Bagutree ChatGPT</div>
+          <div className={styles["sidebar-title"]}>ibaozi.cn</div>
           <div className={styles["sidebar-sub-title"]}>
             Build your own AI assistant.
           </div>
@@ -672,7 +672,7 @@ export function Home() {
               <a href={REPO_URL} target="_blank">
                 <img
                   className={styles["rounded-img"]}
-                  src={"/bagutree-logo.jpg"}
+                  src={"/head_ixaozhang.jpeg"}
                   alt="My Image"
                 />
               </a>
