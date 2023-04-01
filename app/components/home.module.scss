@@ -450,3 +450,13 @@
   height: 100%;
   width: 100%;
 }
+
+
+.rounded-img {
+  border-radius: 20%;
+  background-color: var(--white);
+  overflow: hidden;
+  user-select: none;
+  width: 35px;
+  height: 35px;
+}

@@ -36,6 +36,7 @@ import dynamic from "next/dynamic";
 import { REPO_URL } from "../constant";
 import { ControllerPool } from "../requests";
 import { Prompt, usePromptStore } from "../store/prompt";
+import Image from "next/image";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -627,7 +628,7 @@ export function Home() {
         className={styles.sidebar + ` ${showSideBar && styles["sidebar-show"]}`}
       >
         <div className={styles["sidebar-header"]}>
-          <div className={styles["sidebar-title"]}>ChatGPT Next</div>
+          <div className={styles["sidebar-title"]}>Bagutree ChatGPT</div>
           <div className={styles["sidebar-sub-title"]}>
             Build your own AI assistant.
           </div>
@@ -669,7 +670,11 @@ export function Home() {
             </div>
             <div className={styles["sidebar-action"]}>
               <a href={REPO_URL} target="_blank">
-                <IconButton icon={<GithubIcon />} />
+                <img
+                  className={styles["rounded-img"]}
+                  src={"/bagutree-logo.jpg"}
+                  alt="My Image"
+                />
               </a>
             </div>
           </div>
