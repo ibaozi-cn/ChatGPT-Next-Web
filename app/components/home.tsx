@@ -708,11 +708,11 @@ export function Home() {
                 <IconButton icon={<LogoIcon />} />
               </a>
             </div>
-            <div className={styles["sidebar-action"]}>
-              <a href={GITHUB_URL} target="_blank">
-                <IconButton icon={<GithubIcon />} />
-              </a>
-            </div>
+            {/*<div className={styles["sidebar-action"]}>*/}
+            {/*  <a href={GITHUB_URL} target="_blank">*/}
+            {/*    <IconButton icon={<GithubIcon />} />*/}
+            {/*  </a>*/}
+            {/*</div>*/}
           </div>
         </div>
       </div>
