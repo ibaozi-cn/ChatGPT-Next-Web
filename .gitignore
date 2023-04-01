@@ -37,8 +37,8 @@ next-env.d.ts
 dev
 
 public/prompts.json
-/.idea/.gitignore
 /.idea/ChatGPT-Next-Web.iml
 /.idea/modules.xml
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
+/.idea/workspace.xml
