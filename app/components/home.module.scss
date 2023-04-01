@@ -7,9 +7,9 @@
   box-shadow: var(--shadow);
   color: var(--black);
   background-color: var(--white);
-  min-width: 600px;
-  min-height: 480px;
-  max-width: 900px;
+  min-width: 1300px;
+  min-height: 580px;
+  max-width: 1200px;
 
   display: flex;
   overflow: hidden;
@@ -43,7 +43,7 @@
   width: var(--sidebar-width);
   box-sizing: border-box;
   padding: 20px;
-  background-color: var(--second);
+  background-color: var(--gray);
   display: flex;
   flex-direction: column;
   box-shadow: inset -2px 0px 2px 0px rgb(0, 0, 0, 0.05);
@@ -60,7 +60,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .container {
     min-height: unset;
     min-width: unset;

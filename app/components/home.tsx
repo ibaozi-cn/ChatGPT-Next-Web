@@ -8,6 +8,10 @@ import styles from "./home.module.scss";
 
 import SettingsIcon from "../icons/settings.svg";
 import GithubIcon from "../icons/github.svg";
+import BilibiliIcon from "../icons/bilibili.svg";
+import XingQiuIcon from "../icons/xingqiu.svg";
+import YuqueIcon from "../icons/yuque.svg";
+import LogoIcon from "../icons/tree.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
@@ -33,7 +37,13 @@ import {
 import Locale from "../locales";
 
 import dynamic from "next/dynamic";
-import { REPO_URL } from "../constant";
+import {
+  BILIBILI_URL,
+  GITHUB_URL,
+  REPO_URL,
+  XINGQIU_URL,
+  YUQUE_URL,
+} from "../constant";
 import { ControllerPool } from "../requests";
 import { Prompt, usePromptStore } from "../store/prompt";
 import Image from "next/image";
@@ -645,6 +655,16 @@ export function Home() {
           }}
         >
           <ChatList />
+          <div>
+            <IconButton
+              icon={<AddIcon />}
+              text={Locale.Home.NewChat}
+              onClick={() => {
+                createNewSession();
+                setShowSideBar(false);
+              }}
+            />
+          </div>
         </div>
 
         <div className={styles["sidebar-tail"]}>
@@ -669,24 +689,30 @@ export function Home() {
               />
             </div>
             <div className={styles["sidebar-action"]}>
-              <a href={REPO_URL} target="_blank">
-                <img
-                  className={styles["rounded-img"]}
-                  src={"/bagutree-logo.jpg"}
-                  alt="My Image"
-                />
+              <a href={XINGQIU_URL} target="_blank">
+                <IconButton icon={<XingQiuIcon />} />
               </a>
             </div>
-          </div>
-          <div>
-            <IconButton
-              icon={<AddIcon />}
-              text={Locale.Home.NewChat}
-              onClick={() => {
-                createNewSession();
-                setShowSideBar(false);
-              }}
-            />
+            <div className={styles["sidebar-action"]}>
+              <a href={YUQUE_URL} target="_blank">
+                <IconButton icon={<YuqueIcon />} />
+              </a>
+            </div>
+            <div className={styles["sidebar-action"]}>
+              <a href={BILIBILI_URL} target="_blank">
+                <IconButton icon={<BilibiliIcon />} />
+              </a>
+            </div>
+            <div className={styles["sidebar-action"]}>
+              <a href={REPO_URL} target="_blank">
+                <IconButton icon={<LogoIcon />} />
+              </a>
+            </div>
+            <div className={styles["sidebar-action"]}>
+              <a href={GITHUB_URL} target="_blank">
+                <IconButton icon={<GithubIcon />} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
