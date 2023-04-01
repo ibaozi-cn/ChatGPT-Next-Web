@@ -669,7 +669,7 @@ export function Home() {
             </div>
             <div className={styles["sidebar-action"]}>
               <a href={REPO_URL} target="_blank">
-                <img src="/bagutree-log.jpg" alt="bagutree" />
+                bagutree
               </a>
             </div>
           </div>
