@@ -646,7 +646,10 @@ export function Home() {
           </a>
           <div className={styles["sidebar-title"]}>i校长</div>
           <div className={styles["sidebar-sub-title"]}>
-            想拥有自己专属的Chatgpt站点？想体验Gpt-4？请加微信：ibaozi_cn
+            1、想拥有自己专属的Chatgpt站点？想体验Gpt-4？请加微信：ibaozi_cn。
+          </div>
+          <div className={styles["sidebar-sub-title"]}>
+            2、另外本人正在组织合伙制体验Chatgpt Plus计划，欢迎骚扰。
           </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
