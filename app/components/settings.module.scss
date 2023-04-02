@@ -28,6 +28,5 @@
   border-radius: 20px;
   background-color: var(--white);
   width: var(--window-content-width);
-  display: block;
-  margin: 0 auto;
+  max-width: 360px;
 }
