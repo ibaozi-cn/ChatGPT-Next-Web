@@ -651,6 +651,9 @@ export function Home() {
           <div className={styles["sidebar-sub-title"]}>
             2、另外本人正在组织合伙制体验Chatgpt Plus计划，欢迎骚扰。
           </div>
+          <div className={styles["sidebar-sub-title"]}>
+            3、也欢迎关注我们，一个免费分享大厂技术的组织，点击下方小树按钮即可访问官网。
+          </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
           </div>
