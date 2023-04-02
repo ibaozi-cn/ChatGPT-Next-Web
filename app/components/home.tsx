@@ -660,6 +660,17 @@ export function Home() {
           </div>
         </div>
 
+        <div className={styles["padding-bottom20"]}>
+          <IconButton
+            icon={<AddIcon />}
+            text={Locale.Home.NewChat}
+            onClick={() => {
+              createNewSession();
+              setShowSideBar(false);
+            }}
+          />
+        </div>
+
         <div
           className={styles["sidebar-body"]}
           onClick={() => {
@@ -668,16 +679,6 @@ export function Home() {
           }}
         >
           <ChatList />
-          <div>
-            <IconButton
-              icon={<AddIcon />}
-              text={Locale.Home.NewChat}
-              onClick={() => {
-                createNewSession();
-                setShowSideBar(false);
-              }}
-            />
-          </div>
         </div>
 
         <div className={styles["sidebar-tail"]}>
