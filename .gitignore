@@ -42,3 +42,4 @@ public/prompts.json
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
+/.idea/jsLinters/eslint.xml

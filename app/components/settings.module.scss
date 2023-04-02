@@ -18,3 +18,16 @@
 .avatar {
   cursor: pointer;
 }
+
+.img-ibaozi-container {
+  text-align: center;
+}
+
+.img-ibaozi {
+  border: var(--border-in-light);
+  border-radius: 20px;
+  background-color: var(--white);
+  width: var(--window-content-width);
+  display: block;
+  margin: 0 auto;
+}

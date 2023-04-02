@@ -76,6 +76,7 @@ export function Settings(props: { closeSettings: () => void }) {
     used?: number;
   }>();
   const [loadingUsage, setLoadingUsage] = useState(false);
+
   function checkUsage() {
     setLoadingUsage(true);
     requestUsage()
@@ -143,7 +144,15 @@ export function Settings(props: { closeSettings: () => void }) {
           </div>
         </div>
       </div>
+
       <div className={styles["settings"]}>
+        <div className={styles["img-ibaozi-container"]}>
+          <img
+            className={styles["img-ibaozi"]}
+            src={"/ibaozi-money.jpeg"}
+            alt={"baozi"}
+          />
+        </div>
         <List>
           <SettingItem title={Locale.Settings.Avatar}>
             <Popover

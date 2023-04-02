@@ -7,7 +7,10 @@ import { IconButton } from "./button";
 import styles from "./home.module.scss";
 
 import SettingsIcon from "../icons/settings.svg";
-import GithubIcon from "../icons/github.svg";
+import JuejinIcon from "../icons/juejin.svg";
+import BaoziIcon from "../icons/baozi.svg";
+import TreeIcon from "../icons/tree.svg";
+import YuQueIcon from "../icons/yuque.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
@@ -33,7 +36,13 @@ import {
 import Locale from "../locales";
 
 import dynamic from "next/dynamic";
-import { REPO_URL } from "../constant";
+import {
+  BAOZI_URL,
+  JUEJIN_URL,
+  REPO_URL,
+  TREE_URL,
+  YUQUE_URL,
+} from "../constant";
 import { ControllerPool } from "../requests";
 import { Prompt, usePromptStore } from "../store/prompt";
 import Image from "next/image";
@@ -628,6 +637,13 @@ export function Home() {
         className={styles.sidebar + ` ${showSideBar && styles["sidebar-show"]}`}
       >
         <div className={styles["sidebar-header"]}>
+          <a href={BAOZI_URL} target="_blank">
+            <img
+              className={styles["rounded-img"]}
+              src={"/head_ixaozhang.jpeg"}
+              alt="My Image"
+            />
+          </a>
           <div className={styles["sidebar-title"]}>ibaozi.cn</div>
           <div className={styles["sidebar-sub-title"]}>
             Build your own AI assistant.
@@ -645,6 +661,16 @@ export function Home() {
           }}
         >
           <ChatList />
+          <div>
+            <IconButton
+              icon={<AddIcon />}
+              text={Locale.Home.NewChat}
+              onClick={() => {
+                createNewSession();
+                setShowSideBar(false);
+              }}
+            />
+          </div>
         </div>
 
         <div className={styles["sidebar-tail"]}>
@@ -669,24 +695,20 @@ export function Home() {
               />
             </div>
             <div className={styles["sidebar-action"]}>
-              <a href={REPO_URL} target="_blank">
-                <img
-                  className={styles["rounded-img"]}
-                  src={"/head_ixaozhang.jpeg"}
-                  alt="My Image"
-                />
+              <a href={JUEJIN_URL} target="_blank">
+                <IconButton icon={<JuejinIcon />} />
               </a>
             </div>
-          </div>
-          <div>
-            <IconButton
-              icon={<AddIcon />}
-              text={Locale.Home.NewChat}
-              onClick={() => {
-                createNewSession();
-                setShowSideBar(false);
-              }}
-            />
+            <div className={styles["sidebar-action"]}>
+              <a href={YUQUE_URL} target="_blank">
+                <IconButton icon={<YuQueIcon />} />
+              </a>
+            </div>
+            <div className={styles["sidebar-action"]}>
+              <a href={TREE_URL} target="_blank">
+                <IconButton icon={<TreeIcon />} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
