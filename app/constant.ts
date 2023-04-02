@@ -1,6 +1,7 @@
 export const OWNER = "ibaozi-cn";
 export const REPO = "ChatGPT-Next-Web";
-export const REPO_URL = `http://bagutree.cn`;
+export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
+export const BAGUTREE_URL = `http://bagutree.cn`;
 export const BILIBILI_URL = `https://space.bilibili.com/546582430?spm_id_from=333.1007.0.0`;
 export const YUQUE_URL = `https://www.yuque.com/bagutree/nr9fzs/ldhfqc`;
 export const XINGQIU_URL = `https://wx.zsxq.com/dweb2/index/group/15528115411512`;

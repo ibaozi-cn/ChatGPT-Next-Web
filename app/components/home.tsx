@@ -38,6 +38,7 @@ import Locale from "../locales";
 
 import dynamic from "next/dynamic";
 import {
+  BAGUTREE_URL,
   BILIBILI_URL,
   GITHUB_URL,
   REPO_URL,
@@ -638,13 +639,38 @@ export function Home() {
         className={styles.sidebar + ` ${showSideBar && styles["sidebar-show"]}`}
       >
         <div className={styles["sidebar-header"]}>
-          <div className={styles["sidebar-title"]}>Bagutree ChatGPT</div>
+          <a href={BAGUTREE_URL} target="_blank">
+            <img
+              className={styles["rounded-img"]}
+              src={"/bagutree-logo.jpg"}
+              alt="My Image"
+            />
+          </a>
+          <div className={styles["sidebar-title"]}>Bagutree 组织</div>
           <div className={styles["sidebar-sub-title"]}>
-            Build your own AI assistant.
+            1、想拥有自己专属的Chatgpt站点？想体验Gpt-4？请加微信：bagutree。
+          </div>
+          <div className={styles["sidebar-sub-title"]}>
+            2、另外我们正在组织合伙制体验Chatgpt Plus计划，欢迎骚扰。
+          </div>
+          <div className={styles["sidebar-sub-title"]}>
+            3、也欢迎关注我们官网，一个免费分享一线互联网大厂深度技术的组织，点击上方LOGO图标，或者自己浏览器中输入
+            bagutree.cn。
           </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
           </div>
+        </div>
+
+        <div className={styles["padding-bottom20"]}>
+          <IconButton
+            icon={<AddIcon />}
+            text={Locale.Home.NewChat}
+            onClick={() => {
+              createNewSession();
+              setShowSideBar(false);
+            }}
+          />
         </div>
 
         <div
@@ -655,16 +681,6 @@ export function Home() {
           }}
         >
           <ChatList />
-          <div>
-            <IconButton
-              icon={<AddIcon />}
-              text={Locale.Home.NewChat}
-              onClick={() => {
-                createNewSession();
-                setShowSideBar(false);
-              }}
-            />
-          </div>
         </div>
 
         <div className={styles["sidebar-tail"]}>
@@ -703,16 +719,16 @@ export function Home() {
                 <IconButton icon={<BilibiliIcon />} />
               </a>
             </div>
-            <div className={styles["sidebar-action"]}>
-              <a href={REPO_URL} target="_blank">
-                <IconButton icon={<LogoIcon />} />
-              </a>
-            </div>
             {/*<div className={styles["sidebar-action"]}>*/}
-            {/*  <a href={GITHUB_URL} target="_blank">*/}
-            {/*    <IconButton icon={<GithubIcon />} />*/}
+            {/*  <a href={REPO_URL} target="_blank">*/}
+            {/*    <IconButton icon={<LogoIcon />} />*/}
             {/*  </a>*/}
             {/*</div>*/}
+            <div className={styles["sidebar-action"]}>
+              <a href={GITHUB_URL} target="_blank">
+                <IconButton icon={<GithubIcon />} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
