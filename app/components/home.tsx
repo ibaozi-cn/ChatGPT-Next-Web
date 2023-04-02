@@ -644,9 +644,9 @@ export function Home() {
               alt="My Image"
             />
           </a>
-          <div className={styles["sidebar-title"]}>ibaozi.cn</div>
+          <div className={styles["sidebar-title"]}>i校长</div>
           <div className={styles["sidebar-sub-title"]}>
-            Build your own AI assistant.
+            想拥有自己专属的Chatgpt站点？想体验Gpt-4？请加微信：ibaozi_cn
           </div>
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
