@@ -3,7 +3,8 @@ import { SubmitKey } from "../store/app";
 const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
-    Unauthorized: "现在是未授权状态，请在设置页填写授权码。",
+    Unauthorized:
+      "现在是未授权状态，请按如下步骤操作：\n（1）请关注微信公众号「BaguTree」\n（2）在公众号聊天页面输入「访问码」获取密码\n（3）回到网站配置访问码后方可免费体验。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
