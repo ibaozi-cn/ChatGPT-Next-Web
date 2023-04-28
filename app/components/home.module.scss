@@ -52,6 +52,8 @@
   .sidebar-header-bar {
     display: flex;
     margin-bottom: 20px;
+    align-content: center;
+    justify-content: center;
 
     .sidebar-bar-button {
       flex-grow: 1;

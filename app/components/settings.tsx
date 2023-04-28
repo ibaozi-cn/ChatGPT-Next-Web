@@ -248,7 +248,7 @@ export function Settings() {
         <div className={styles["img-ibaozi-container"]}>
           <img
             className={styles["img-ibaozi"]}
-            src={"/bagutree-money.jpeg"}
+            src={"/bagutree-wechat.jpeg"}
             alt={"baozi"}
           />
         </div>

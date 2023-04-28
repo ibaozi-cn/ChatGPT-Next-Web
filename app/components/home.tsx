@@ -6,16 +6,6 @@ import { useState, useEffect } from "react";
 
 import styles from "./home.module.scss";
 
-import SettingsIcon from "../icons/settings.svg";
-import GithubIcon from "../icons/github.svg";
-import BilibiliIcon from "../icons/bilibili.svg";
-import XingQiuIcon from "../icons/xingqiu.svg";
-import YuqueIcon from "../icons/yuque.svg";
-import LogoIcon from "../icons/tree.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
-import SendWhiteIcon from "../icons/send-white.svg";
-import BrainIcon from "../icons/brain.svg";
-import ExportIcon from "../icons/export.svg";
 import BotIcon from "../icons/bot.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 
@@ -33,18 +23,6 @@ import {
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
 import { useAppConfig } from "../store/config";
-
-import {
-  BAGUTREE_URL,
-  BILIBILI_URL,
-  GITHUB_URL,
-  REPO_URL,
-  XINGQIU_URL,
-  YUQUE_URL,
-} from "../constant";
-import { ControllerPool } from "../requests";
-import { Prompt, usePromptStore } from "../store/prompt";
-import Image from "next/image";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -130,27 +108,6 @@ function Screen() {
       }
     >
       <SideBar className={isHome ? styles["sidebar-show"] : ""} />
-
-      <div>
-        <a href={BAGUTREE_URL} target="_blank">
-          <img
-              className={styles["rounded-img"]}
-              src={"/bagutree-logo.jpg"}
-              alt="My Image"
-          />
-        </a>
-        <div className={styles["sidebar-title"]}>Bagutree 组织</div>
-        <div className={styles["sidebar-sub-title"]}>
-          1、想拥有自己专属的Chatgpt站点？想体验Gpt-4？请加微信：bagutree。
-        </div>
-        <div className={styles["sidebar-sub-title"]}>
-          2、另外我们正在组织合伙制体验Chatgpt Plus计划，欢迎骚扰。
-        </div>
-        <div className={styles["sidebar-sub-title"]}>
-          3、也欢迎关注我们官网，一个免费分享一线互联网大厂深度技术的组织，点击上方LOGO图标，或者自己浏览器中输入
-          bagutree.cn。
-        </div>
-      </div>
 
       <div className={styles["window-content"]} id={SlotID.AppBody}>
         <Routes>
