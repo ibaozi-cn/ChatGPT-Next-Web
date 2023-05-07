@@ -8,13 +8,11 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
-    }); // 针对 SVG 的处理规则
-    return config;
-  }
-};
+    });
 
-if (process.env.DOCKER) {
-  nextConfig.output = 'standalone'
-}
+    return config;
+  },
+  output: "standalone",
+};
 
 module.exports = nextConfig;
