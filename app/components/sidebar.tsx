@@ -105,6 +105,9 @@ export function SideBar(props: { className?: string }) {
       <div className={styles["sidebar-header"]}>
         <div className={styles["sidebar-title"]}>i校长包子铺</div>
         <div className={styles["sidebar-sub-title"]}>ai.ibaozi.cn</div>
+        <div className={styles["sidebar-sub-title"]}>
+          目前已经支持GPT-4模型访问，您可以在设置中修改模型，欢迎体验。
+        </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
         </div>
