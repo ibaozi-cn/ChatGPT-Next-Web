@@ -52,6 +52,8 @@
   .sidebar-header-bar {
     display: flex;
     margin-bottom: 20px;
+    align-content: center;
+    justify-content: center;
 
     .sidebar-bar-button {
       flex-grow: 1;
@@ -569,4 +571,18 @@
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+
+.rounded-img {
+  border-radius: 20%;
+  background-color: var(--white);
+  overflow: hidden;
+  user-select: none;
+  width: 45px;
+  height: 45px;
+}
+
+.padding-bottom20 {
+  padding-bottom: 20px;
 }
