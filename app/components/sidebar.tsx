@@ -10,20 +10,12 @@ import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import MaskIcon from "../icons/mask.svg";
 import PluginIcon from "../icons/plugin.svg";
-import BilibiliIcon from "../icons/bilibili.svg";
-import XingQiuIcon from "../icons/xingqiu.svg";
-import YuqueIcon from "../icons/yuque.svg";
-import LogoIcon from "../icons/tree.svg";
-import SendWhiteIcon from "../icons/send-white.svg";
-import BrainIcon from "../icons/brain.svg";
-import ExportIcon from "../icons/export.svg";
 
 import Locale from "../locales";
 
 import { useAppConfig, useChatStore } from "../store";
 
 import {
-  BAGUTREE_URL,
   MAX_SIDEBAR_WIDTH,
   MIN_SIDEBAR_WIDTH,
   NARROW_SIDEBAR_WIDTH,
@@ -35,11 +27,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { showToast } from "./ui-lib";
-
-import { BILIBILI_URL, GITHUB_URL, XINGQIU_URL, YUQUE_URL } from "../constant";
-import { ControllerPool } from "../requests";
-import { Prompt, usePromptStore } from "../store/prompt";
-import Image from "next/image";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -109,51 +96,12 @@ export function SideBar(props: { className?: string }) {
       }`}
     >
       <div className={styles["sidebar-header"]}>
-        <a href={BAGUTREE_URL} target="_blank">
-          <img
-            className={styles["rounded-img"]}
-            src={"/bagutree-logo.jpg"}
-            alt="My Image"
-          />
-        </a>
-        <div className={styles["sidebar-title"]}>Bagutree 组织</div>
+        <div className={styles["sidebar-title"]}>ChatGPT Next</div>
         <div className={styles["sidebar-sub-title"]}>
-          1、想拥有自己专属的Chatgpt站点？想入群？请扫码加微信，二维码在左下角设置页面，点击设置按钮即可出现。
-        </div>
-        <div className={styles["sidebar-sub-title"]}>
-          2、也欢迎关注我们官网，一个免费分享一线互联网大厂深度技术的组织，点击上方LOGO图标，或者自己浏览器中输入
-          bagutree.cn。
+          Build your own AI assistant.
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
-        </div>
-      </div>
-
-      <div className={styles["sidebar-header-bar"]}>
-        <div className={styles["sidebar-action"]}>
-          <a href={XINGQIU_URL} target="_blank">
-            <IconButton icon={<XingQiuIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={YUQUE_URL} target="_blank">
-            <IconButton icon={<YuqueIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={BILIBILI_URL} target="_blank">
-            <IconButton icon={<BilibiliIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={BAGUTREE_URL} target="_blank">
-            <IconButton icon={<LogoIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={GITHUB_URL} target="_blank">
-            <IconButton icon={<GithubIcon />} />
-          </a>
         </div>
       </div>
 
@@ -190,7 +138,11 @@ export function SideBar(props: { className?: string }) {
           <div className={styles["sidebar-action"] + " " + styles.mobile}>
             <IconButton
               icon={<CloseIcon />}
-              onClick={chatStore.deleteSession}
+              onClick={() => {
+                if (confirm(Locale.Home.DeleteChat)) {
+                  chatStore.deleteSession(chatStore.currentSessionIndex);
+                }
+              }}
             />
           </div>
           <div className={styles["sidebar-action"]}>
@@ -211,6 +163,7 @@ export function SideBar(props: { className?: string }) {
             onClick={() => {
               if (config.dontShowMaskSplashScreen) {
                 chatStore.newSession();
+                navigate(Path.Chat);
               } else {
                 navigate(Path.NewChat);
               }
