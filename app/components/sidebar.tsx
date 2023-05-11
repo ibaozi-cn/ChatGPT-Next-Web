@@ -115,10 +115,7 @@ export function SideBar(props: { className?: string }) {
         </a>
         <div className={styles["sidebar-title"]}>Bagutree 组织</div>
         <div className={styles["sidebar-sub-title"]}>
-          1、想拥有自己专属的Chatgpt站点？想入群？请扫码加微信，二维码在左下角设置页面，点击设置按钮即可出现。
-        </div>
-        <div className={styles["sidebar-sub-title"]}>
-          2、也欢迎关注我们官网，一个免费分享一线互联网大厂深度技术的组织，点击上方LOGO图标，或者自己浏览器中输入
+          欢迎关注我们官网，一个免费分享一线互联网大厂深度技术的组织，点击上方LOGO图标，或者自己浏览器中输入
           bagutree.cn。
         </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
