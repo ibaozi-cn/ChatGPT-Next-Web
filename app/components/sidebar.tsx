@@ -113,7 +113,7 @@ export function SideBar(props: { className?: string }) {
             alt="My Image"
           />
         </a>
-        <div className={styles["sidebar-title"]}>Bagutree 组织</div>
+        <div className={styles["sidebar-title"]}>BaguTree 组织</div>
         <div className={styles["sidebar-sub-title"]}>
           欢迎关注我们官网，一个免费分享一线互联网大厂深度技术的组织，点击上方LOGO图标，或者自己浏览器中输入
           bagutree.cn。
