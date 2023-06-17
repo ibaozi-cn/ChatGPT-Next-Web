@@ -11,16 +11,23 @@ import mermaid from "mermaid";
 
 import LoadingIcon from "../icons/three-dots.svg";
 import React from "react";
+import { useThrottledCallback } from "use-debounce";
 
-export function Mermaid(props: { code: string }) {
+export function Mermaid(props: { code: string; onError: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (props.code && ref.current) {
-      mermaid.run({
-        nodes: [ref.current],
-      });
+      mermaid
+        .run({
+          nodes: [ref.current],
+        })
+        .catch((e) => {
+          props.onError();
+          console.error("[Mermaid] ", e.message);
+        });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.code]);
 
   function viewSvgInNewWindow() {
@@ -38,7 +45,7 @@ export function Mermaid(props: { code: string }) {
   return (
     <div
       className="no-dark"
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", overflow: "auto" }}
       ref={ref}
       onClick={() => viewSvgInNewWindow()}
     >
@@ -60,7 +67,7 @@ export function PreCode(props: { children: any }) {
   }, [props.children]);
 
   if (mermaidCode) {
-    return <Mermaid code={mermaidCode} />;
+    return <Mermaid code={mermaidCode} onError={() => setMermaidCode("")} />;
   }
 
   return (
@@ -115,49 +122,63 @@ export function Markdown(
     content: string;
     loading?: boolean;
     fontSize?: number;
-    parentRef: RefObject<HTMLDivElement>;
+    parentRef?: RefObject<HTMLDivElement>;
     defaultShow?: boolean;
   } & React.DOMAttributes<HTMLDivElement>,
 ) {
   const mdRef = useRef<HTMLDivElement>(null);
   const renderedHeight = useRef(0);
+  const renderedWidth = useRef(0);
   const inView = useRef(!!props.defaultShow);
+  const [_, triggerRender] = useState(0);
+  const checkInView = useThrottledCallback(
+    () => {
+      const parent = props.parentRef?.current;
+      const md = mdRef.current;
+      if (parent && md && !props.defaultShow) {
+        const parentBounds = parent.getBoundingClientRect();
+        const twoScreenHeight = Math.max(500, parentBounds.height * 2);
+        const mdBounds = md.getBoundingClientRect();
+        const parentTop = parentBounds.top - twoScreenHeight;
+        const parentBottom = parentBounds.bottom + twoScreenHeight;
+        const isOverlap =
+          Math.max(parentTop, mdBounds.top) <=
+          Math.min(parentBottom, mdBounds.bottom);
+        inView.current = isOverlap;
+        triggerRender(Date.now());
+      }
 
-  const parent = props.parentRef.current;
-  const md = mdRef.current;
+      if (inView.current && md) {
+        const rect = md.getBoundingClientRect();
+        renderedHeight.current = Math.max(renderedHeight.current, rect.height);
+        renderedWidth.current = Math.max(renderedWidth.current, rect.width);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    300,
+    {
+      leading: true,
+      trailing: true,
+    },
+  );
 
-  const checkInView = () => {
-    if (parent && md) {
-      const parentBounds = parent.getBoundingClientRect();
-      const twoScreenHeight = Math.max(500, parentBounds.height * 2);
-      const mdBounds = md.getBoundingClientRect();
-      const parentTop = parentBounds.top - twoScreenHeight;
-      const parentBottom = parentBounds.bottom + twoScreenHeight;
-      const isOverlap =
-        Math.max(parentTop, mdBounds.top) <=
-        Math.min(parentBottom, mdBounds.bottom);
-      inView.current = isOverlap;
-    }
+  useEffect(() => {
+    props.parentRef?.current?.addEventListener("scroll", checkInView);
+    checkInView();
+    return () =>
+      props.parentRef?.current?.removeEventListener("scroll", checkInView);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    if (inView.current && md) {
-      renderedHeight.current = Math.max(
-        renderedHeight.current,
-        md.getBoundingClientRect().height,
-      );
-    }
-  };
-
-  checkInView();
+  const getSize = (x: number) => (!inView.current && x > 0 ? x : "auto");
 
   return (
     <div
       className="markdown-body"
       style={{
         fontSize: `${props.fontSize ?? 14}px`,
-        height:
-          !inView.current && renderedHeight.current > 0
-            ? renderedHeight.current
-            : "auto",
+        height: getSize(renderedHeight.current),
+        width: getSize(renderedWidth.current),
       }}
       ref={mdRef}
       onContextMenu={props.onContextMenu}

@@ -10,13 +10,6 @@ import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import MaskIcon from "../icons/mask.svg";
 import PluginIcon from "../icons/plugin.svg";
-import BilibiliIcon from "../icons/bilibili.svg";
-import XingQiuIcon from "../icons/xingqiu.svg";
-import YuqueIcon from "../icons/yuque.svg";
-import LogoIcon from "../icons/tree.svg";
-import SendWhiteIcon from "../icons/send-white.svg";
-import BrainIcon from "../icons/brain.svg";
-import ExportIcon from "../icons/export.svg";
 
 import Locale from "../locales";
 
@@ -36,11 +29,31 @@ import { useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
 import { showToast } from "./ui-lib";
 
-import { BILIBILI_URL, GITHUB_URL, XINGQIU_URL, YUQUE_URL } from "../constant";
-
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
 });
+
+function useHotKey() {
+  const chatStore = useChatStore();
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.metaKey || e.altKey || e.ctrlKey) {
+        const n = chatStore.sessions.length;
+        const limit = (x: number) => (x + n) % n;
+        const i = chatStore.currentSessionIndex;
+        if (e.key === "ArrowUp") {
+          chatStore.selectSession(limit(i - 1));
+        } else if (e.key === "ArrowDown") {
+          chatStore.selectSession(limit(i + 1));
+        }
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  });
+}
 
 function useDragSideBar() {
   const limit = (x: number) => Math.min(MAX_SIDEBAR_WIDTH, x);
@@ -96,8 +109,9 @@ export function SideBar(props: { className?: string }) {
   // drag side bar
   const { onDragMouseDown, shouldNarrow } = useDragSideBar();
   const navigate = useNavigate();
-
   const config = useAppConfig();
+
+  useHotKey();
 
   return (
     <div
@@ -117,37 +131,9 @@ export function SideBar(props: { className?: string }) {
         <div className={styles["sidebar-sub-title"]}>
           欢迎关注我们官网，一个免费分享一线互联网大厂深度技术的组织，点击上方LOGO图标，或者自己浏览器中输入
           bagutree.cn。
-        </div>
-        <div className={styles["sidebar-logo"] + " no-dark"}>
-          <ChatGptIcon />
-        </div>
-      </div>
-
-      <div className={styles["sidebar-header-bar"]}>
-        <div className={styles["sidebar-action"]}>
-          <a href={XINGQIU_URL} target="_blank">
-            <IconButton icon={<XingQiuIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={YUQUE_URL} target="_blank">
-            <IconButton icon={<YuqueIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={BILIBILI_URL} target="_blank">
-            <IconButton icon={<BilibiliIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={BAGUTREE_URL} target="_blank">
-            <IconButton icon={<LogoIcon />} />
-          </a>
-        </div>
-        <div className={styles["sidebar-action"]}>
-          <a href={GITHUB_URL} target="_blank">
-            <IconButton icon={<GithubIcon />} />
-          </a>
+          <div className={styles["sidebar-logo"] + " no-dark"}>
+            <ChatGptIcon />
+          </div>
         </div>
       </div>
 

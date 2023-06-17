@@ -64,7 +64,7 @@ code1,code2,code3
 
 ## 环境变量
 
-> 本项目大多数配置项都通过环境变量来设置。
+> 本项目大多数配置项都通过环境变量来设置，教程：[如何修改 Vercel 环境变量](./docs/vercel-cn.md)。
 
 ### `OPENAI_API_KEY` （必填项）
 
@@ -94,9 +94,11 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 如果你不想让用户自行填入 API Key，将此环境变量设置为 1 即可。
 
-## 开发
+### `DISABLE_GPT4` （可选）
 
-> 强烈不建议在本地进行开发或者部署，由于一些技术原因，很难在本地配置好 OpenAI API 代理，除非你能保证可以直连 OpenAI 服务器。
+如果你不想让用户使用 GPT-4，将此环境变量设置为 1 即可。
+
+## 开发
 
 点击下方按钮，开始二次开发：
 
@@ -106,6 +108,9 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 ```
 OPENAI_API_KEY=<your api key here>
+
+# 中国大陆用户，可以使用本项目自带的代理进行开发，你也可以自由选择其他代理地址
+BASE_URL=https://chatgpt1.nextweb.fun/api/proxy
 ```
 
 ### 本地开发
