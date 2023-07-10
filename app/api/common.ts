@@ -43,6 +43,8 @@ export async function requestOpenai(req: NextRequest) {
     cache: "no-store",
     method: req.method,
     body: req.body,
+    // @ts-ignore
+    duplex: "half",
     signal: controller.signal,
   };
 
@@ -76,8 +78,7 @@ export async function requestOpenai(req: NextRequest) {
     // to prevent browser prompt for credentials
     const newHeaders = new Headers(res.headers);
     newHeaders.delete("www-authenticate");
-
-    // to disbale ngnix buffering
+    // to disable nginx buffering
     newHeaders.set("X-Accel-Buffering", "no");
 
     return new Response(res.body, {
