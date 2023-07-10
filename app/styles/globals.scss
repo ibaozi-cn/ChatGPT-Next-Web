@@ -61,7 +61,7 @@
 
   --window-width: 90vw;
   --window-height: 90vh;
-  --sidebar-width: 360px;
+  --sidebar-width: 300px;
   --window-content-width: calc(100% - var(--sidebar-width));
   --message-max-width: 80%;
   --full-height: 100%;
@@ -248,6 +248,10 @@ div.math {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 600px) {
+    align-items: flex-end;
+  }
 }
 
 .link {
@@ -299,6 +303,9 @@ pre {
 
   &:hover {
     filter: brightness(0.9);
+  }
+  &:focus {
+    filter: brightness(0.95);
   }
 }
 
